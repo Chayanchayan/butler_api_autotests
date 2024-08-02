@@ -16,3 +16,6 @@ class TestData:
     SHORT_MAILBOX_NAME_TEXT = "Mailbox name too short"
     MISSING_RECIPIENT_TEXT = "missing parameter for recipient"
     MISSING_FACTOR_TEXT = "missing parameter for factor"
+    INVALID_VERIFICATION_CODE_TEXT = "invalid verification code"
+    VERIFICATION_CODE = "0000"
+    INVALID_VERIFICATION_CODE = "0"
