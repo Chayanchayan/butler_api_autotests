@@ -1,1 +1,1 @@
-# account_manager_api_autotests
+[![AMRegression](https://github.com/Chayanchayan/ac_manager_api_autotests/actions/workflows/am_regression.yml/badge.svg)](https://github.com/Chayanchayan/ac_manager_api_autotests/actions/workflows/am_regression.yml)
