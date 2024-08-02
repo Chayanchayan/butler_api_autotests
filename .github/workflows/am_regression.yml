@@ -1,0 +1,53 @@
+name: AMRegression
+
+
+on:
+#  push: {}
+  schedule:
+    - cron: '0 11 * * 1,2,3,4,5'
+
+  workflow_dispatch:
+    inputs:
+      environment:
+        required: true
+        default: "prod"
+        description: "Set environment, e.g. `ENV=prod or ENV=shot`"
+      arguments:
+        required: false
+        default: "-m regression"
+        description: "pytest additional arguments, e.g. `-m regression`"
+
+
+jobs:
+  playwright:
+    name: Regression tests
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright/python:latest
+    env:
+      API_KEY: ${{ secrets.API_KEY_QA }}
+      PROD_LOGIN1: ${{ secrets.PROD_LOGIN }}
+      PROD_PW1: ${{ secrets.PROD_PW }}
+#      TEST_IT_TOKEN: ${{ secrets.TEST_IT_TOKEN }}
+    strategy:
+      matrix:
+        browser: [remote_chrome]
+    outputs:
+      env_name: ${{ steps.pytest.outputs.env_name }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: python3 -m pip install -r requirements.txt
+      - run: |
+          if [ "${{github.event_name}}" = "schedule" ]; then 
+            export ENV="prod"
+          else
+            export ENV='${{github.event.inputs.environment}}'
+            export args='${{github.event.inputs.arguments}}'
+          fi
+            echo "::set-output name=env_name::${ENV:-prod}"
+            pytest ${args}
