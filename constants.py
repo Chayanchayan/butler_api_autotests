@@ -10,4 +10,9 @@ class Constants:
 
 class TestData:
     VALID_EMAIL = "testone+teacher@uchi.ru"
+    INVALID_EMAIL = "testone+teacher@uchi"
     FACTOR_EMAIL = "email"
+    INVALID_DOMAIN_NAME_TEXT = "Invalid Domain Name"
+    SHORT_MAILBOX_NAME_TEXT = "Mailbox name too short"
+    MISSING_RECIPIENT_TEXT = "missing parameter for recipient"
+    MISSING_FACTOR_TEXT = "missing parameter for factor"
