@@ -1,4 +1,5 @@
 import pytest
+import testit
 
 import constants
 from modules.common_models import OtpErrorResponse
@@ -6,7 +7,7 @@ from modules.verify_otp.model import VerifyOtp
 
 
 class TestVerifyOtp:
-
+    @testit.workItemIds(34382)
     def test_verify_otp_with_invalid_email(self, app):
         """
         1. Send request with invalid email
@@ -18,6 +19,7 @@ class TestVerifyOtp:
         assert res.status_code == 422, "Check status code"
         assert constants.TestData.INVALID_DOMAIN_NAME_TEXT in res.text
 
+    @testit.workItemIds(34384)
     @pytest.mark.parametrize("field", ["recipient"])
     def test_verify_otp_with_empty_recipient(self, app, field):
         """
@@ -31,6 +33,7 @@ class TestVerifyOtp:
         assert res.status_code == 422, "Check status code"
         assert constants.TestData.MISSING_RECIPIENT_TEXT in res.text
 
+    @testit.workItemIds(34385)
     @pytest.mark.parametrize("field", ["factor"])
     def test_verify_otp_with_empty_factor(self, app, field):
         """
@@ -44,6 +47,7 @@ class TestVerifyOtp:
         assert res.status_code == 422, "Check status code"
         assert constants.TestData.MISSING_FACTOR_TEXT in res.text
 
+    @testit.workItemIds(34390)
     def test_verify_otp_with_invalid_code(self, app):
         """
         1. Send request with invalid code
