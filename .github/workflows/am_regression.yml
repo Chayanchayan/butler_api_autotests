@@ -47,4 +47,4 @@ jobs:
             export args='${{github.event.inputs.arguments}}'
           fi
             echo "::set-output name=env_name::${ENV:-prod}"
-            pytest
+            pytest ${args} -v -s --testit tests/
