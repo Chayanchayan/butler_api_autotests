@@ -1,7 +1,7 @@
 import logging
 import pytest
 
-from modules.app import OtpApp
+from modules.app import ButlerApp
 
 logger = logging.getLogger("api")
 
@@ -10,7 +10,7 @@ logger = logging.getLogger("api")
 def app(request):
     url = request.config.getoption("--api-url")
     logger.info(f"Start api tests, url is {url}")
-    return OtpApp(url)
+    return ButlerApp(url)
 
 
 def pytest_addoption(parser):

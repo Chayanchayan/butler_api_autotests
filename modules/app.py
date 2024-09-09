@@ -3,7 +3,7 @@ from modules.requests import Client
 from modules.verify_otp.api import VerifyOtpApi
 
 
-class OtpApp:
+class ButlerApp:
 
     def __init__(self, url):
         self.url = url
