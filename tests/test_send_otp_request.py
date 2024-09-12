@@ -19,7 +19,7 @@ class TestOtpRequest:
         assert res.status_code == 200, "Check status code"
 
     @testit.workItemIds(34377)
-    def test_otp_request_with_invalid_valid(self, app):
+    def test_otp_request_with_invalid_email(self, app):
         """
         1. Send request with invalid email
         2. Check status code is 422
